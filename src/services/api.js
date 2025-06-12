@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://solution.omnidoc.ma/api',
+  baseURL: 'https://solutions.omnidoc.ma:3001/api',
   headers: {
     'Content-Type': 'application/json',
   },

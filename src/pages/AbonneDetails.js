@@ -332,7 +332,7 @@ export default function AbonneDetails() {
   const handleDownload = async (document) => {
     try {
       // Utiliser la même base URL que l'API
-      const filePath = `https://solution.omnidoc.ma/uploads/${abonne.numero_identification}/${document.nom_fichier}`;
+      const filePath = `https://solutions.omnidoc.ma:3001/uploads/${abonne.numero_identification}/${document.nom_fichier}`;
       
       // Ouvrir dans une nouvelle fenêtre
       window.open(filePath, '_blank');
