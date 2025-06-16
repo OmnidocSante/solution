@@ -18,10 +18,12 @@ import {
   IconButton,
   HStack,
   Divider,
-  Text
+  Text,
+  Select
 } from '@chakra-ui/react';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
 import api from '../services/api';
+import { villes } from '../constants/villes';
 
 const AbonneForm = () => {
   const { id } = useParams();
@@ -323,12 +325,18 @@ const AbonneForm = () => {
                 <GridItem>
                   <FormControl isRequired>
                     <FormLabel>Ville</FormLabel>
-                    <Input
+                    <Select
                       name="ville"
                       value={formData.ville}
                       onChange={handleChange}
-                      placeholder="Ville"
-                    />
+                      placeholder="Sélectionner une ville"
+                    >
+                      {villes.map((ville) => (
+                        <option key={ville.value} value={ville.value}>
+                          {ville.label}
+                        </option>
+                      ))}
+                    </Select>
                   </FormControl>
                 </GridItem>
 

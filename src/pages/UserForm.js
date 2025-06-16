@@ -17,6 +17,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import api from '../services/api';
+import { villes } from '../constants/villes';
 
 const UserForm = () => {
   const { id } = useParams();
@@ -196,12 +197,18 @@ const UserForm = () => {
                 <GridItem>
                   <FormControl>
                     <FormLabel>Ville</FormLabel>
-                    <Input
+                    <Select
                       name="ville"
                       value={formData.ville}
                       onChange={handleChange}
-                      placeholder="Ville"
-                    />
+                      placeholder="Sélectionner une ville"
+                    >
+                      {villes.map((ville) => (
+                        <option key={ville.value} value={ville.value}>
+                          {ville.label}
+                        </option>
+                      ))}
+                    </Select>
                   </FormControl>
                 </GridItem>
 
