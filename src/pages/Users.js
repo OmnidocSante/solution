@@ -207,7 +207,7 @@ export default function Users() {
                       <Th>Nom</Th>
                       <Th>Email</Th>
                       <Th>Rôle</Th>
-                      <Th>Statut</Th>
+                     
                       <Th>Actions</Th>
                     </Tr>
                   </Thead>
@@ -316,21 +316,7 @@ export default function Users() {
                     <option value="user">Utilisateur</option>
                   </Select>
                 </FormControl>
-                <FormControl>
-                  <FormLabel>Statut</FormLabel>
-                  <Select
-                    value={selectedUser?.actif ? 'actif' : 'inactif'}
-                    onChange={(e) =>
-                      setSelectedUser({
-                        ...selectedUser,
-                        actif: e.target.value === 'actif',
-                      })
-                    }
-                  >
-                    <option value="actif">Actif</option>
-                    <option value="inactif">Inactif</option>
-                  </Select>
-                </FormControl>
+               
                 <Button
                   type="submit"
                   colorScheme="brand"
