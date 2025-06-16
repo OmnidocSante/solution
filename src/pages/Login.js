@@ -194,14 +194,7 @@ export default function Login() {
                   >
                     Se connecter
                   </Button>
-                  <Button
-                    variant="outline"
-                    colorScheme="brand"
-                    onClick={onOpen}
-                    width="100%"
-                  >
-                    Créer un compte
-                  </Button>
+                  
                 </VStack>
               </form>
             </VStack>
@@ -209,83 +202,6 @@ export default function Login() {
         </Card>
       </Container>
 
-      <Modal isOpen={isOpen} onClose={onClose} size="md">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Créer un compte</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <form onSubmit={handleRegister}>
-              <VStack spacing={4}>
-                <FormControl isRequired isInvalid={errors.nom}>
-                  <FormLabel>Nom</FormLabel>
-                  <Input
-                    value={registerData.nom}
-                    onChange={(e) =>
-                      setRegisterData({ ...registerData, nom: e.target.value })
-                    }
-                  />
-                  <FormErrorMessage>{errors.nom}</FormErrorMessage>
-                </FormControl>
-                <FormControl isRequired isInvalid={errors.prenom}>
-                  <FormLabel>Prénom</FormLabel>
-                  <Input
-                    value={registerData.prenom}
-                    onChange={(e) =>
-                      setRegisterData({ ...registerData, prenom: e.target.value })
-                    }
-                  />
-                  <FormErrorMessage>{errors.prenom}</FormErrorMessage>
-                </FormControl>
-                <FormControl isRequired isInvalid={errors.email}>
-                  <FormLabel>Email</FormLabel>
-                  <Input
-                    type="email"
-                    value={registerData.email}
-                    onChange={(e) =>
-                      setRegisterData({ ...registerData, email: e.target.value })
-                    }
-                  />
-                  <FormErrorMessage>{errors.email}</FormErrorMessage>
-                </FormControl>
-                <FormControl isRequired isInvalid={errors.password}>
-                  <FormLabel>Mot de passe</FormLabel>
-                  <Input
-                    type="password"
-                    value={registerData.password}
-                    onChange={(e) =>
-                      setRegisterData({ ...registerData, password: e.target.value })
-                    }
-                  />
-                  <FormErrorMessage>{errors.password}</FormErrorMessage>
-                </FormControl>
-                <FormControl isRequired isInvalid={errors.confirmPassword}>
-                  <FormLabel>Confirmer le mot de passe</FormLabel>
-                  <Input
-                    type="password"
-                    value={registerData.confirmPassword}
-                    onChange={(e) =>
-                      setRegisterData({
-                        ...registerData,
-                        confirmPassword: e.target.value,
-                      })
-                    }
-                  />
-                  <FormErrorMessage>{errors.confirmPassword}</FormErrorMessage>
-                </FormControl>
-                <Button
-                  type="submit"
-                  colorScheme="brand"
-                  width="100%"
-                  isLoading={registerLoading}
-                >
-                  Créer le compte
-                </Button>
-              </VStack>
-            </form>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
     </Box>
   );
 } 
