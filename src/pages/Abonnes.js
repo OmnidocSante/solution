@@ -209,7 +209,7 @@ export default function Abonnes() {
                                 icon={<FiEdit2 />}
                                 onClick={() => navigate(`/abonnes/${abonne.id}`)}
                               >
-                                Modifier
+                              {user.role === 'admin' ? 'Modifier' : 'Details'}
                               </MenuItem>
                               {user.role === 'admin' && (
                                 <MenuItem

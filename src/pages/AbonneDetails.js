@@ -418,6 +418,16 @@ export default function AbonneDetails() {
   };
 
   const handleEditEnfant = (enfant) => {
+    if (user?.role !== 'admin') {
+      toast({
+        title: 'Accès refusé',
+        description: 'Vous n\'avez pas les droits nécessaires pour effectuer cette action',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
     navigate(`/enfants/${enfant.id}/edit`, { 
       state: { 
         enfant,
@@ -428,6 +438,16 @@ export default function AbonneDetails() {
   };
 
   const handleEditConjoint = (conjoint) => {
+    if (user?.role !== 'admin') {
+      toast({
+        title: 'Accès refusé',
+        description: 'Vous n\'avez pas les droits nécessaires pour effectuer cette action',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
     navigate(`/conjoints/${conjoint.id}/edit`, { 
       state: { 
         conjoint,
@@ -489,6 +509,7 @@ export default function AbonneDetails() {
             </Box>
           </HStack>
           <HStack>
+          {user?.role === 'admin' && (
             <Button
               leftIcon={<FiSave />}
               colorScheme="brand"
@@ -497,6 +518,8 @@ export default function AbonneDetails() {
             >
               Enregistrer
             </Button>
+
+          )}
             {user?.role === 'admin' && (
               <Button
                 leftIcon={<FiTrash2 />}
@@ -532,6 +555,7 @@ export default function AbonneDetails() {
                             onChange={(e) =>
                               setAbonne({ ...abonne, nom: e.target.value })
                             }
+                            isReadOnly={user?.role !== 'admin'}
                           />
                         </FormControl>
                       </GridItem>
@@ -543,6 +567,7 @@ export default function AbonneDetails() {
                             onChange={(e) =>
                               setAbonne({ ...abonne, prenom: e.target.value })
                             }
+                            isReadOnly={user?.role !== 'admin'}
                           />
                         </FormControl>
                       </GridItem>
@@ -553,6 +578,7 @@ export default function AbonneDetails() {
                             type="date"
                             value={convertToISODate(abonne.date_naissance)}
                             onChange={(e) => handleDateChange(e, 'date_naissance')}
+                            isReadOnly={user?.role !== 'admin'}
                           />
                           
                         </FormControl>
@@ -565,6 +591,7 @@ export default function AbonneDetails() {
                             onChange={(e) =>
                               setAbonne({ ...abonne, cin: e.target.value })
                             }
+                            isReadOnly={user?.role !== 'admin'}
                           />
                         </FormControl>
                       </GridItem>
@@ -576,6 +603,7 @@ export default function AbonneDetails() {
                             onChange={(e) =>
                               setAbonne({ ...abonne, telephone: e.target.value })
                             }
+                            isReadOnly={user?.role !== 'admin'}
                           />
                         </FormControl>
                       </GridItem>
@@ -587,6 +615,7 @@ export default function AbonneDetails() {
                             onChange={(e) =>
                               setAbonne({ ...abonne, ville: e.target.value })
                             }
+                            isReadOnly={user?.role !== 'admin'}
                           />
                         </FormControl>
                       </GridItem>
@@ -598,6 +627,7 @@ export default function AbonneDetails() {
                             onChange={(e) =>
                               setAbonne({ ...abonne, adresse: e.target.value })
                             }
+                            isReadOnly={user?.role !== 'admin'}
                           />
                         </FormControl>
                       </GridItem>
@@ -609,6 +639,7 @@ export default function AbonneDetails() {
                             onChange={(e) =>
                               setAbonne({ ...abonne, numero_identification: e.target.value })
                             }
+                            isReadOnly={user?.role !== 'admin'}
                           />
                         </FormControl>
                       </GridItem>
