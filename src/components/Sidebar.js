@@ -69,6 +69,7 @@ const Sidebar = () => {
   };
 
   const isAdmin = user?.role === 'admin';
+  const isControleur = user?.role === 'controleur';
 
   const menuItems = [
     { icon: FiUsers, text: 'Abonnés', path: '/abonnes' },
@@ -78,6 +79,10 @@ const Sidebar = () => {
   const adminMenuItems = [
     { icon: FiUser, text: 'Utilisateurs', path: '/users' },
     { icon: FiUserCheck, text: 'Nouvel utilisateur', path: '/users/add' },
+    { icon: FiFileText, text: 'Rapports', path: '/rapports' },
+  ];
+
+  const controleurMenuItems = [
     { icon: FiFileText, text: 'Rapports', path: '/rapports' },
   ];
 
@@ -132,6 +137,27 @@ const Sidebar = () => {
               </NavItem>
             ))}
           </>
+        )}
+        {isControleur && (
+          <>
+            <Divider my={2} />
+            <Box px="4" py="2">
+              <Text fontSize="sm" fontWeight="bold" color="gray.500">
+                Controleur
+              </Text>
+            </Box>
+            {controleurMenuItems.map((item) => (
+              <NavItem
+                key={item.path}
+                icon={item.icon}
+                path={item.path}
+                isActive={location.pathname === item.path}
+                onClick={() => navigate(item.path)}
+              >
+                {item.text}
+              </NavItem>
+            ))}
+          </> 
         )}
 
         <Divider mt="auto" />

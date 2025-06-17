@@ -53,8 +53,11 @@ const Rapports = () => {
     try {
       const response = await api.get('/users');
       setUtilisateurs(response.data);
-      // Extraire les villes uniques des utilisateurs
-      const uniqueVilles = [...new Set(response.data.map(user => user.ville))].filter(Boolean);
+      // Extraire les villes uniques des utilisateurs et les trier
+      const uniqueVilles = [...new Set(response.data
+        .map(user => user.ville ? user.ville.trim().toUpperCase() : '')
+        .filter(ville => ville !== '')
+      )].sort();
       setVilles(uniqueVilles);
     } catch (error) {
       console.error('Erreur lors de la récupération des utilisateurs:', error);
@@ -178,8 +181,11 @@ const Rapports = () => {
         ville: ville
       });
 
+      // Si aucune période n'est sélectionnée, retourner tous les abonnés
+      if (!periode) return true;
+
       const matchDate = dateAbonne >= dates.debut && dateAbonne <= dates.fin;
-      const matchVille = !ville || user?.ville === ville;
+      const matchVille = !ville || (user?.ville && user.ville.trim().toUpperCase() === ville.trim().toUpperCase());
       const matchUtilisateur = !utilisateur || Number(abonne.user_id) === Number(utilisateur);
 
       return matchDate && matchVille && matchUtilisateur;
@@ -190,15 +196,20 @@ const Rapports = () => {
     const abonnesFiltres = filtrerAbonnes();
     const abonnesParVille = {};
 
-    abonnesFiltres.forEach(abonne => {
+    // Si aucun filtre n'est appliqué, utiliser tous les abonnés
+    const abonnesToCount = periode ? abonnesFiltres : abonnes;
+
+    abonnesToCount.forEach(abonne => {
       const user = utilisateurs.find(u => Number(u.id) === Number(abonne.user_id));
       if (user?.ville) {
-        abonnesParVille[user.ville] = (abonnesParVille[user.ville] || 0) + 1;
+        // Normaliser le nom de la ville (majuscules et espaces)
+        const villeNormalisee = user.ville.trim().toUpperCase();
+        abonnesParVille[villeNormalisee] = (abonnesParVille[villeNormalisee] || 0) + 1;
       }
     });
 
     setStatistiques({
-      totalAbonnes: abonnesFiltres.length,
+      totalAbonnes: abonnesToCount.length,
       nouveauxAbonnes: abonnesFiltres.length,
       abonnesParVille
     });

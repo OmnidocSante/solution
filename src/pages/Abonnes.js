@@ -50,7 +50,7 @@ export default function Abonnes() {
     if (socket) {
       // Écouter les nouveaux abonnés
       socket.on('new_abonne', (newAbonne) => {
-        if (user.role === 'admin' || newAbonne.user_id === user.id) {
+        if (user.role === 'admin' || user.role === 'controleur' || newAbonne.user_id === user.id) {
           setAbonnes(prev => [...prev, newAbonne]);
         }
       });
@@ -77,7 +77,7 @@ export default function Abonnes() {
   const fetchAbonnes = async () => {
     try {
       const response = await api.get('/abonnes');
-      if (user.role === 'admin') {
+      if (user.role === 'admin' || user.role === 'controleur') {
         setAbonnes(response.data);
       } else {
         setAbonnes(response.data.filter(abonne => abonne.user_id === user.id));
@@ -142,7 +142,7 @@ export default function Abonnes() {
           <Box>
             <Heading size="lg">Abonnés</Heading>
             <Text color="gray.600" mt={1}>
-              {user.role === 'admin' ? 'Gérez tous les abonnés' : 'Gérez vos abonnés'}
+              {user.role === 'admin' || user.role === 'controleur' ? 'Gérez tous les abonnés' : 'Gérez vos abonnés'}
             </Text>
           </Box>
           <Button

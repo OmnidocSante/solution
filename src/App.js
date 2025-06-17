@@ -195,14 +195,14 @@ function App() {
             <Route
               path="/rapports"
               element={
-                <ProtectedRoute roles={['admin']}>
+                <ProtectedRoute roles={['admin', 'controleur']}>
                   <Layout>
                     <Rapports />
                   </Layout>
                 </ProtectedRoute>
               }
             />
-    
+         
 
             {/* Route 404 */}
             <Route path="*" element={<NotFound />} />

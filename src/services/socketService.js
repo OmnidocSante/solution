@@ -11,7 +11,7 @@ class SocketService {
       this.socket.disconnect();
     }
 
-    this.socket = io(process.env.REACT_APP_API_URL || 'http://localhost:5000', {
+    this.socket = io(process.env.REACT_APP_API_URL || 'https://solutions.omnidoc.ma:3001', {
       auth: { token }
     });
 

@@ -158,7 +158,7 @@ export default function Users() {
     switch (role) {
       case 'admin':
         return 'purple';
-      case 'manager':
+      case 'controleur':
         return 'blue';
       case 'user':
         return 'green';
@@ -207,7 +207,6 @@ export default function Users() {
                       <Th>Nom</Th>
                       <Th>Email</Th>
                       <Th>Rôle</Th>
-                     
                       <Th>Actions</Th>
                     </Tr>
                   </Thead>
@@ -223,13 +222,7 @@ export default function Users() {
                             {user.role}
                           </Badge>
                         </Td>
-                        <Td>
-                          <Badge
-                            colorScheme={user.actif ? 'green' : 'red'}
-                          >
-                            {user.actif ? 'Actif' : 'Inactif'}
-                          </Badge>
-                        </Td>
+                      
                         <Td>
                           <Menu>
                             <MenuButton
@@ -311,9 +304,9 @@ export default function Users() {
                       setSelectedUser({ ...selectedUser, role: e.target.value })
                     }
                   >
-                    <option value="admin">Administrateur</option>
-                    <option value="manager">Manager</option>
-                    <option value="user">Utilisateur</option>
+                    <option value="admin">Admin</option>
+                    <option value="controleur">Controleur</option>
+                    <option value="saisie">Saisie</option>
                   </Select>
                 </FormControl>
                

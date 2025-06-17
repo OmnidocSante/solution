@@ -177,7 +177,9 @@ const UserForm = () => {
                       onChange={handleChange}
                     >
                       <option value="admin">Admin</option>
+                      <option value="controleur">Controleur</option>
                       <option value="saisie">Saisie</option>
+                      
                     </Select>
                   </FormControl>
                 </GridItem>
