@@ -151,7 +151,7 @@ exports.getAbonnesWithFilters = async (req, res) => {
       }
 
       // Limiter aux abonnés de l'agence si l'utilisateur n'est pas admin
-      if (req.user.role !== 'admin') {
+      if (req.user.role !== 'admin' && req.user.role !== 'controleur') {
         query += ' AND agence = ?';
         params.push(req.user.agence);
       }

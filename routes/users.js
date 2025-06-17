@@ -11,10 +11,10 @@ router.use(authMiddleware);
 router.get('/me', userController.getCurrentUser);
 
 // Routes accessibles uniquement aux administrateurs
-router.get('/', roleMiddleware(['admin']), userController.getAllUsers);
-router.get('/:id', roleMiddleware(['admin']), userController.getUserById);
-router.post('/', roleMiddleware(['admin']), userController.createUser);
-router.put('/:id', roleMiddleware(['admin']), userController.updateUser);
+router.get('/', roleMiddleware(['admin', 'controleur']), userController.getAllUsers);
+router.get('/:id', roleMiddleware(['admin', 'controleur']), userController.getUserById);
+router.post('/', roleMiddleware(['admin', 'controleur']), userController.createUser);
+router.put('/:id', roleMiddleware(['admin', 'controleur']), userController.updateUser);
 router.delete('/:id', roleMiddleware(['admin']), userController.deleteUser);
 
 // Route pour changer le mot de passe (accessible à l'utilisateur lui-même)
